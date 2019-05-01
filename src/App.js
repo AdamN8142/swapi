@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Splash from './Splash'
+import Header from './Header';
 import './App.css';
 
 class App extends Component {
@@ -52,7 +53,7 @@ class App extends Component {
         case ('home'):
           return (
             <div className="App">
-              <h1>Swapi Box </h1>
+              <Header />
             </div>
         )
         default:

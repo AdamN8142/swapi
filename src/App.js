@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
+import Splash from './Splash'
 import './App.css';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      movies:[]
+      movies:[],
+      pageStatus: 'splash',
+      randomNumber: 0 
     }
+  }
+
+  enterApp = (e) => {
+    this.setState({
+      pageStatus: 'home'
+    })
   }
 
   componentDidMount() {
@@ -18,19 +27,46 @@ class App extends Component {
       fetch(url)
         .then(response => response.json())
         .then(results => this.setState({
-          movies: results
-        }))
+          movies: results.results
+        }, this.randomNumber())
+      )
         .catch(error => console.log(error))
   }
 
+  randomNumber = () => {
+    let randomNumber = Math.floor((Math.random() * 6))
+    this.setState({
+      randomNumber
+      })
+    }
+  
+
+  
 
 
   render() {
-    return (
-      <div className="App">
-        <h1>Swapi Box </h1>
-      </div>
-    )
+    if(this.state.movies.length === 0) {
+      return (<div>Help On The Way...</div>)
+    } else {
+      switch(this.state.pageStatus) {
+        case ('home'):
+          return (
+            <div className="App">
+              <h1>Swapi Box </h1>
+            </div>
+        )
+        default:
+          return (
+            <div>
+              <Splash 
+              enterApp={this.enterApp} 
+              randomNum={this.state.randomNumber} 
+              scroll={this.state.movies[this.state.randomNumber]}
+              />
+            </div>
+          )    
+      }
+    }
   }
 }
 

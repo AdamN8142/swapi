@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Splash from './Splash'
 import Header from './Header';
+import FilterControls from './FilterControls'
 import './App.css';
 
 class App extends Component {
@@ -54,6 +55,7 @@ class App extends Component {
           return (
             <div className="App">
               <Header />
+              <FilterControls />
             </div>
         )
         default:

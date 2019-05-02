@@ -23,6 +23,7 @@ class App extends Component {
 
   componentDidMount() {
     this.fetchMovies()
+    this.randomNumber()
     this.fetchPeople()
   }
 
@@ -32,8 +33,8 @@ class App extends Component {
         .then(response => response.json())
         .then(results => this.setState({
           movies: results.results
-        }, this.randomNumber())
-      )
+        })
+       )
         .catch(error => console.log(error))
   }
 
@@ -59,7 +60,9 @@ class App extends Component {
   }
 
 
-
+  fetchSpecies = (arr) => {
+    const unresolvedPromises = arr.map()
+  }
 
 
   randomNumber = () => {

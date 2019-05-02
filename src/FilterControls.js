@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 class FilterControls extends Component {
   constructor() {
     super()
+    this.state = {
+      activeFilter: ''
+    }
   }
   render() {
     return (

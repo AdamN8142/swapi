@@ -9,8 +9,9 @@ class App extends Component {
     super();
     this.state = {
       movies:[],
+      people: [],
       pageStatus: 'splash',
-      randomNumber: 0 
+      randomNumber: 0
     }
   }
 
@@ -22,6 +23,7 @@ class App extends Component {
 
   componentDidMount() {
     this.fetchMovies()
+    this.fetchPeople()
   }
 
   fetchMovies = () => {
@@ -35,15 +37,37 @@ class App extends Component {
         .catch(error => console.log(error))
   }
 
+  fetchPeople = () => {
+    const url = "https://swapi.co/api/people"
+    fetch(url)
+      .then(response => response.json())
+      .then(results => this.fetchHomeWorlds(results.results))
+      .then((data) => {
+        this.setState({
+          people: data
+        })
+      })
+  }
+
+  fetchHomeWorlds = (arr) => {
+    const unresolvedPromises = arr.map((person)=> {
+      return fetch(person.homeworld) 
+        .then(response => response.json())
+        .then(results => ({... results, nameOfChar: person.name}))
+    })
+    return Promise.all(unresolvedPromises)
+  }
+
+
+
+
+
   randomNumber = () => {
     let randomNumber = Math.floor((Math.random() * 6))
     this.setState({
       randomNumber
       })
     }
-  
-
-  
 
 
   render() {
@@ -62,9 +86,9 @@ class App extends Component {
           return (
             <div>
               <Splash 
-              enterApp={this.enterApp} 
-              randomNum={this.state.randomNumber} 
-              scroll={this.state.movies[this.state.randomNumber]}
+                enterApp={this.enterApp} 
+                randomNum={this.state.randomNumber} 
+                scroll={this.state.movies[this.state.randomNumber]}
               />
             </div>
           )    

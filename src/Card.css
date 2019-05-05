@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
+
+
+.individual-card { 
+  border: solid black 2px; 
+  /* box-shadow: 2px 1px 1px 2px; */
+  padding:10x;
+  margin:14px;
+  height: 330px;
+  width: 265px;
+  padding-left: 10px;
+  margin-top: 50px;
+  background-image:linear-gradient( blue,wheat,yellow, lightblue);
+  border-radius: 25px;
+}
+
+
+
+.card-name { 
+  text-align: center;
+  font-family: 'Source Code Pro', monospace;
+  text-decoration: underline;
+  font-size: 25px;
+}
+
+.favorite-btn {
+  height:20px;
+  width: 60px;
+  float: right;
+  margin-top: 7px;
+  margin-right:10px;
+  border-radius: 10px;
+  font-size: 8px;
+  background-color: lightslategrey;
+}
+
+.favorite-btn:hover { 
+  background-color: black;
+  color:white;
+  font-weight: bold;
+}
